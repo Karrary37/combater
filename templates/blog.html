@@ -1,0 +1,116 @@
+{% load static %}
+{% include "includes/header-blog.html" %}
+<section class="section_default_product_page" style="margin-top: 120px">
+    <div class="container">
+
+        <div class="row">
+
+            <!-- Blog Entries Column -->
+            <div class="col-md-7">
+
+
+                <!-- Blog Post -->
+                    <div class="section-header text-center">
+                      <h2 class="section-title wow fadeInDown" data-wow-delay="0.3s">Blog</h2>
+                      <div class="shape wow fadeInDown" data-wow-delay="0.3s"></div>
+                    </div>
+                    {% for article in articles %}
+                    <div class="bloco-noticia ">
+                        <div class="card mb-3" style="max-width: 709px;">
+                            <a class="botao-card" href="{% url 'blog_page' article.slug %}" type="button"
+                               style="text-decoration: none;">
+                                <div class="row no-gutters">
+                                    <div class="col-lg-4 d-flex align-items-center">
+                                        <img src="{{ article.image.url }}" style="max-height: 250px" class="card-img ml-2" alt="...">
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <div class="card-body">
+                                            <h3 class="card-title text-hover "
+                                                style="text-decoration: none; color: #212529;font-size: 26px">{{ article.title }}</h3>
+                                            <div class="d-flex  bd-highlight  borda-amarela cor-cinza">
+                                                <div class="p-2 bd-highlight under-none">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"
+                                                         fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
+                                                        <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                                                    </svg>
+                                                     {{ article.date }} </div>
+                                                <div class="p-2 bd-highlight under-none">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"
+                                                         fill="currentColor" class="bi bi-bookmark-fill"
+                                                         viewBox="0 0 16 16">
+                                                        <path d="M2 2v13.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z"/>
+                                                    </svg>
+                                                     {{ article.category }} </div>
+                                                <div class="p-2 bd-highlight under-none">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"
+                                                         fill="currentColor" class="bi bi-person-fill"
+                                                         viewBox="0 0 16 16">
+                                                        <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                                                    </svg>
+                                                     {{ article.author }}</div>
+                                            </div>
+                                            <p class="cor-cinza under-none pt-2">{{ article.description|truncatechars:197|safe }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                {% endfor %}
+
+                <div class="d-flex justify-content-around">
+                    <div class="prev-page">
+                            <a class="proximo-post" href="" style="text-decoration: none;">PREVIOUS PAGE
+                            
+                        </a>
+                    </div>
+                    <div class="next-page">
+                        <a class="proximo-post" href="" style="text-decoration: none;">NEXT PAGE
+                           <div class="iconfont is-offcanvas-close-button"><em class="iconfont__no-italize"></em></div>
+                        </a>
+                        <div class="iconfont is-offcanvas-close-button"><em class="iconfont__no-italize"></em></div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- Sidebar Widgets Column -->
+            <div class="col-md-4">
+
+                <!-- Search Widget -->
+                <!---->
+
+                <div class="card-body">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search...">
+                        <span class="input-group-append">
+                            <button id="busc" class="btn " type="button">Search</button>
+                        </span>
+                    </div>
+                </div>
+
+
+                <!-- Categories Widget -->
+                <div class="" style="padding-left: 1.5625rem;">
+                    <h5 style="font-size: 1.25rem!important;color: #212529" class="texto-bold">Categories</h5>
+                    <div class="card-body">
+                        <div class="row">
+                            <ul class="list-group list-group-flush">
+                                {% for category in categories %} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;
+                                    <li class="list-item bordinha pb-2">
+                                        <a class="cat cor-cinza" href="#" style="text-decoration: none;">{{ category.title }}</a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- /.row -->
+
+    </div>
+</section>
+{% include "includes/footer.html" %}>

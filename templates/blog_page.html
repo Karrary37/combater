@@ -1,0 +1,115 @@
+{% load static %}
+{% include "includes/header-blog.html" %}
+<div class="container section_default_product_page" style="margin-top: 120px;">
+
+    <div class="row">
+
+        <!-- Blog Entries Column -->
+        <div class="col-md-8">
+            <div class="ts-title text-blue mb-5">
+                <h2 style="color: {{ section.title_color }}">{{ article.title }}</h2>
+            </div>
+
+            <!-- Corpo do Blog -->
+
+            <!-- Carrossel-->
+            <div class="blog-page_image">
+                <img src="{{ article.image.url }}" style="max-height: 500px" class="d-block w-100 img-fluid" alt="...">
+            </div>
+
+            <div class="d-flex bd-highlight borda-amarela">
+                <div class="p-2 bd-highlight">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor"
+                         class="bi bi-calendar" viewBox="0 0 16 16">
+                        <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                    </svg>
+                    {{ article.date }}</div>
+                <div class="p-2 bd-highlight">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor"
+                         class="bi bi-bookmark-fill" viewBox="0 0 16 16">
+                        <path d="M2 2v13.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z"/>
+                    </svg>
+                    {{ article.category }} </div>
+                <div class="p-2 bd-highlight">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor"
+                         class="bi bi-person-fill" viewBox="0 0 16 16">
+                        <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                    </svg>
+                    {{ article.author }}</div>
+            </div>
+            <!--  Texto -->
+            <br>
+            <div>
+                <p class="cor-cinza">{{ article.description|safe }}</p>
+
+            </div>
+            <br>
+        </div>
+
+
+        <!-- Sidebar Widgets Column -->
+        <div class="col-md-4">
+
+            <!-- Search Widget -->
+            <!---->
+
+            <div class="card-body">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Buscar...">
+                    <span class="input-group-append">
+                            <button id="busc" class="btn " type="button">Buscar</button>
+                        </span>
+                </div>
+            </div>
+
+
+            <!-- Categories Widget -->
+            <div class="" style="padding-left: 1.5625rem;">
+                <h5 style="font-size: 1.25rem!important;color: #212529" class="texto-bold">Categories</h5>
+                <div class="card-body">
+                    <div class="row">
+                        <ul class="list-group list-group-flush">
+                            {% for category in categories %} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;
+                            <li class="list-item bordinha pb-2">
+                                <a class="cat cor-cinza" href="#" style="text-decoration: none;">{{ category.title }}</a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Side Widget -->
+            <div style="padding-left: 1.5625rem;" class="">
+                <h5 style="font-size: 1.25rem!important;color: #212529" class="texto-bold">Posts Relacionados</h5>
+                <br>
+                {% for article in related_articles %}
+                    <!-- Card -->
+                    <a href="{% url 'blog_page' article.slug %}" class="card mb-3 bloco-noticia"
+                       style="max-width: 345px; min-height: 85px;">
+                        <div class="row align-items-center g-0">
+                            <div class="col-md-4">
+                                <img  class="img-fluid" src="{{ article.image.url }}" alt="..." class="ml-2">
+                            </div>
+                            <div class="col-md-8">
+                                <div class=" text-center">
+                                    <p class="card-title rela cor-cinza texto-bold ">{{ article.title|truncatechars:46 }} </p>
+
+                                </div>
+                                <p class="card-title text-center"><small class="text-muted">{{ article.date }}</small></p>
+
+                            </div>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+
+        </div>
+
+    </div>
+    <!-- /.row -->
+
+</div>
+<!-- /.container -->
+
+{% include "includes/footer.html" %}
