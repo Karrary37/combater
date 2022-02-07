@@ -102,20 +102,6 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
         ordering = ('name',)
 
 
-'''
-class Title(models.Model):
-    title = models.CharField(max_length=255, verbose_name='Título da Página')
-    description = models.TextField(verbose_name='Texto')
-
-    def __str__(self):
-        return self.title or u''
-
-    class Meta:
-        verbose_name = u'Título'
-        verbose_name_plural = u'Título'
-'''
-
-
 class Base(models.Model):
     criados = models.DateField('Criação', auto_now_add=True)
     modificado = models.DateField('Atualização', auto_now=True)
@@ -149,37 +135,7 @@ class Servico(Base):
         return self.servico
 
 
-'''
-class Cargo(Base):
-    cargo = models.CharField('Cargo', max_length=100)
-
-    class Meta:
-        verbose_name = 'Cargo'
-        verbose_name_plural = 'Cargos'
-
-    def __str__(self):
-        return self.cargo
-
-
-class Equipe(Base):
-    nome = models.CharField('Nome', max_length=100)
-    cargo = models.ForeignKey('Cargo', verbose_name='cargo', on_delete=models.DO_NOTHING )
-    bio = models.TextField('Bio', max_length=200)
-    imagem = models.ImageField('Imagem', upload_to='equipe')
-    facebook = models.CharField('Facebook', max_length=100, default='#')
-    twitter = models.CharField('Twitter', max_length=100, default='#')
-    instagram = models.CharField('Instagram', max_length=100, default='#')
-
-    class Meta:
-        verbose_name = 'Equipe'
-        verbose_name_plural = 'Equipe'
-
-    def __str__(self):
-        return self.nome
-'''
-
-
-class DiferencialEsquerdo(Base):
+class Diferencial(Base):
     ICONE_CHOICES = (
         ('lni-cog', 'Engrenagem'),
         ('lni-stats-up', 'Grafico'),
@@ -194,34 +150,12 @@ class DiferencialEsquerdo(Base):
     diferencial = models.CharField('Diferencial', max_length=100)
     descricao = models.TextField('Descrição', max_length=200)
     icone = models.CharField('Icone', max_length=20, choices=ICONE_CHOICES)
+    order = models.SmallIntegerField(verbose_name='Ordem', default=0)
 
     class Meta:
-        verbose_name = 'Diferencial Esquerdo'
-        verbose_name_plural = 'Diferencial Esquerdo'
-
-    def __str__(self):
-        return self.diferencial
-
-
-class DiferencialDireito(Base):
-    ICONE_CHOICES = (
-        ('lni-cog', 'Engrenagem'),
-        ('lni-stats-up', 'Grafico'),
-        ('lni-users', 'Usuarios'),
-        ('lni-layers', 'Design'),
-        ('lni-mobile', 'Mobile'),
-        ('lni-rocket', 'Foguete'),
-        ('lni-laptop-phone', 'Computador'),
-        ('lni-leaf', 'Folha'),
-        ('lni-layers', 'Pilha'),
-    )
-    diferencial = models.CharField('Diferencial', max_length=100)
-    descricao = models.TextField('Descrição', max_length=200)
-    icone = models.CharField('Icone', max_length=20, choices=ICONE_CHOICES)
-
-    class Meta:
-        verbose_name = 'Diferencial Direito'
-        verbose_name_plural = 'Diferencial Direito'
+        verbose_name = 'Diferencial '
+        verbose_name_plural = 'Diferencial '
+        ordering = ("order",)
 
     def __str__(self):
         return self.diferencial

@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'tinymce',
+    'captcha',
     'combaterincendio',
 ]
 
@@ -132,6 +133,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = "staticfiles/combaterincendio"
+
+RECAPTCHA_PUBLIC_KEY = '6LdtwBIeAAAAAKhg64LUjFFyCcAHxz6PmiquYJGw'
+RECAPTCHA_PRIVATE_KEY = '6LdtwBIeAAAAABH6SOM7O4yDuy78kewsSjxJ5Ltx'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static")

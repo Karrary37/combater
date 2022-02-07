@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django import forms
 from tinymce import TinyMCE
-from .models import Servico, DiferencialEsquerdo, DiferencialDireito, Clientes, BlogCategory, Blog, Empresas, SiteContact
+from .models import Servico, Diferencial, Clientes, BlogCategory, Blog, Empresas, SiteContact
 
 
 @admin.register(Servico)
@@ -9,13 +9,8 @@ class ServicoAdmin(admin.ModelAdmin):
     list_display = ('servico', 'icone', 'ativo', 'modificado')
 
 
-@admin.register(DiferencialEsquerdo)
+@admin.register(Diferencial)
 class DiferencialEsquerdoAdmin(admin.ModelAdmin):
-    list_display = ('diferencial', 'icone', 'ativo', 'modificado')
-
-
-@admin.register(DiferencialDireito)
-class DiferencialDireitoAdmin(admin.ModelAdmin):
     list_display = ('diferencial', 'icone', 'ativo', 'modificado')
 
 
